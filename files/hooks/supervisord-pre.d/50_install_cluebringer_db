@@ -1,0 +1,27 @@
+#!/bin/bash
+set -eo pipefail
+
+count=0
+while [ $count -lt 40 ]; do
+  if [[ $(mysql -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "select 1" &>/dev/null ; echo $?) -ne 0 ]]; then
+    echo "Waiting for DB to be ready."
+    sleep 3
+    let count+=1
+  else
+    echo "DB appears to be ready."
+    break
+  fi
+done
+
+if [ $count -eq 40 ]; then
+  echo "DB didn't come up in time, exiting."
+  exit 1
+fi
+
+if [[ $(mysql -N -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$MYSQL_DATABASE';") == 0 ]]; then
+  echo "Setting up cluebringer DB."
+  mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmp/policyd-db.mysql
+else
+  echo "Cluebringer DB not empty, exiting."
+  exit 0
+fi

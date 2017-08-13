@@ -1,0 +1,26 @@
+version: '2'
+services:
+  policyd:
+    hostname: policyd
+    container_name: policyd
+    build: .
+    image: docker-ubuntu-policyd
+    ports:
+      - "10031:10031"
+      - "80:8080"
+      - "443:8443"
+    user: "1000000"
+    environment:
+      - "SUPERVISORD_LOGLEVEL=debug"
+      - CLUEBRINGER_DB_HOST=policyd-mysql
+  policyd-mysql:
+    hostname: policyd-mysql
+    container_name: policyd_mysql
+    image: docker.io/1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5:latest
+    ports:
+      - "3306:3306"
+    user: "1000000"
+    environment:
+      - MYSQL_DATABASE=cluebringer
+      - MYSQL_USER=cluebringer
+      - MYSQL_PASSWORD=ReplaceWithENVFromBuild
