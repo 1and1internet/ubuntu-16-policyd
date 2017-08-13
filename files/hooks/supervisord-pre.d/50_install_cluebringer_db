@@ -14,8 +14,8 @@ while [ $count -lt 40 ]; do
 done
 
 if [ $count -eq 40 ]; then
-  echo "DB didn't come up in time, exiting."
-  exit 1
+  echo "!!!WARNING!!! DB didn't come up in time."
+  exit 0
 fi
 
 if [[ $(mysql -N -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$MYSQL_DATABASE';") == 0 ]]; then
