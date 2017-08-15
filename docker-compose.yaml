@@ -12,7 +12,7 @@ services:
     user: "1000000"
     environment:
       - "SUPERVISORD_LOGLEVEL=debug"
-      - CLUEBRINGER_DB_HOST=policyd-mysql
+      - "CLUEBRINGER_DB_HOST=policyd-mysql"
   policyd-mysql:
     hostname: policyd-mysql
     container_name: policyd_mysql

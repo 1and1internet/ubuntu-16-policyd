@@ -3,7 +3,7 @@ set -eo pipefail
 
 # Password protect webui
 echo Creating webui user
-echo $WEBUI_PASSWORD | htpasswd -ci /var/www/.htpasswd webui
+echo $WEBUI_PASSWORD | htpasswd -ci /var/www/html/.htpasswd webui
 
 # Checking for DB liveness before continuing with DB set up.
 count=0

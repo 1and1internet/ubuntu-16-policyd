@@ -14,6 +14,7 @@ RUN \
   gunzip /tmp/policyd-db.mysql.gz && \
   sed -i -e 's/TYPE=InnoDB/ENGINE=InnoDB/g' /tmp/policyd-db.mysql && \
   chmod -R 0755 /hooks && \
+  chmod -R 0777 /var/www/html && \
   chmod 0666 /var/log/cbpolicyd.log
 ENV MYSQL_ROOT_PASSWORD=ReplaceWithENVFromBuild \
     MYSQL_DATABASE=cluebringer \
