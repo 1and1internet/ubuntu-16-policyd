@@ -28,9 +28,9 @@ if [[ $(mysql -N -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT
   echo "Setting up cluebringer DB."
   mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmp/policyd-db.mysql
   # Add our policys from sql if they exist.
-  if [[ -e /tmpl/cluebringer/policy.sql ]]; then
+  if [[ -e /tmpl/cluebringer/import/policy.sql ]]; then
     echo "Importing our configuration."
-    mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmpl/cluebringer/policy.sql
+    mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmpl/cluebringer/import/policy.sql
     echo "Done."
   else
     echo "Additional sql configuration no found."
