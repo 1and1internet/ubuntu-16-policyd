@@ -16,7 +16,7 @@ services:
   policyd-mysql:
     hostname: policyd-mysql
     container_name: policyd_mysql
-    image: docker.io/1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5:latest
+    image: docker.io/1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10:latest
     ports:
       - "3306:3306"
     user: "1000000"
