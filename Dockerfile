@@ -5,7 +5,7 @@ RUN \
   groupadd cbpolicyd && \
   useradd -g cbpolicyd cbpolicyd && \
   apt-get update && \
-  apt-get -o Dpkg::Options::=--force-confdef -y install gettext-base postfix-cluebringer postfix-cluebringer postfix-cluebringer-mysql postfix-cluebringer-webui -y && \
+  apt-get -o Dpkg::Options::=--force-confdef -y install gettext-base postfix-cluebringer postfix-cluebringer-mysql postfix-cluebringer-webui -y && \
   apt-get -y clean && \
   rm -rf /var/lib/apt/lists/* /etc/cluebringer && \
   mkdir --mode=0775 /etc/cluebringer && \

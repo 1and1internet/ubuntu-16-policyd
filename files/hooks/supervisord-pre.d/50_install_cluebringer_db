@@ -7,10 +7,10 @@ echo $WEBUI_PASSWORD | htpasswd -ci /var/www/html/.htpasswd webui
 
 # Checking for DB liveness before continuing with DB set up.
 count=0
-while [ $count -lt 40 ]; do
+while [ $count -lt 4 ]; do
   if [[ $(mysql -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "select 1" &>/dev/null ; echo $?) -ne 0 ]]; then
     echo "Waiting for DB to be ready."
-    sleep 3
+    sleep 15
     let count+=1
   else
     echo "DB appears to be ready."
@@ -18,7 +18,7 @@ while [ $count -lt 40 ]; do
   fi
 done
 # Die if DB doesn't come up in time.
-if [ $count -eq 40 ]; then
+if [ $count -eq 4 ]; then
   echo "!!!WARNING!!! DB didn't come up in time."
   exit 0
 fi
