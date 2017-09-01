@@ -2,3 +2,7 @@ AuthType Basic
 AuthName "Password Protected Area"
 AuthUserFile /var/www/html/.htpasswd
 Require valid-user
+
+order deny,allow
+deny from all
+allow from 213.171.217.184
