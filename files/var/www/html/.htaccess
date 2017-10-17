@@ -5,4 +5,4 @@ Require valid-user
 
 order deny,allow
 deny from all
-allow from 213.171.217.184
+allow from 213.171.217.184 10.0.0.0/8
