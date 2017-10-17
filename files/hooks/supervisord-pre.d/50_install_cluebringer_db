@@ -26,7 +26,7 @@ fi
 # Set up DB if it's empty.
 if [[ $(mysql -N -h$CLUEBRINGER_DB_HOST -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$MYSQL_DATABASE';") == 0 ]]; then
   echo "Setting up cluebringer DB."
-  mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmp/policyd-db.mysql
+#  mysql -h$CLUEBRINGER_DB_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /tmp/policyd-db.mysql
   # Add our policys from sql if they exist.
   if [[ -e /tmpl/cluebringer/import/policy.sql ]]; then
     echo "Importing our configuration."
